@@ -1,84 +1,90 @@
 -- Create Employees table
 CREATE TABLE Employees (
-    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Position VARCHAR(50),
-    DepartmentID INT,
-    HireDate DATE,
-    Salary DECIMAL(10, 2)
+  EmployeeID INT PRIMARY KEY,
+  FirstName VARCHAR(50),
+  LastName VARCHAR(50),
+  Position VARCHAR(50),
+  DepartmentID INT,
+  HireDate DATE,
+  Salary DECIMAL(10, 2)
 );
 
 -- Create Departments table
 CREATE TABLE Departments (
-    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
-    DepartmentName VARCHAR(50),
-    ManagerID INT
-);
-
--- Create Products table
-CREATE TABLE Products (
-    ProductID INT AUTO_INCREMENT PRIMARY KEY,
-    ProductName VARCHAR(100),
-    Category VARCHAR(50),
-    Price DECIMAL(10, 2),
-    StockQuantity INT
+  DepartmentID INT PRIMARY KEY,
+  DepartmentName VARCHAR(50),
+  ManagerID INT
 );
 
 -- Create Orders table
 CREATE TABLE Orders (
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    CustomerName VARCHAR(100),
-    OrderDate DATE,
-    TotalAmount DECIMAL(10, 2)
+  OrderID INT PRIMARY KEY,
+  CustomerName VARCHAR(100),
+  OrderDate DATE,
+  TotalAmount DECIMAL(10, 2)
 );
 
--- Create OrderDetails table
+-- Create Products table
+CREATE TABLE Products (
+  ProductID INT PRIMARY KEY,
+  ProductName VARCHAR(100),
+  Category VARCHAR(50),
+  Price DECIMAL(10, 2),
+  StockQuantity INT
+);
+
+-- Create OrderDetails table with named foreign keys
 CREATE TABLE OrderDetails (
-    OrderDetailID INT AUTO_INCREMENT PRIMARY KEY,
-    OrderID INT,
-    ProductID INT,
-    Quantity INT,
-    Price DECIMAL(10, 2),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+  OrderDetailID INT PRIMARY KEY,
+  OrderID INT,
+  ProductID INT,
+  Quantity INT,
+  Price DECIMAL(10, 2),
+  CONSTRAINT fk_order
+    FOREIGN KEY (OrderID) 
+    REFERENCES Orders (OrderID),
+  CONSTRAINT fk_product
+    FOREIGN KEY (ProductID) 
+    REFERENCES Products (ProductID)
 );
 
--- Insert sample data into Departments
-INSERT INTO Departments (DepartmentName, ManagerID) VALUES
-('Production', 1),
-('Quality Control', 2),
-('Logistics', 3),
-('Sales', 4),
-('HR', 5);
 
--- Insert sample data into Employees
-INSERT INTO Employees (FirstName, LastName, Position, DepartmentID, HireDate, Salary) VALUES
-('John', 'Doe', 'Production Manager', 1, '2015-01-01', 75000),
-('Jane', 'Smith', 'QC Inspector', 2, '2016-02-15', 60000),
-('Emily', 'Jones', 'Logistics Coordinator', 3, '2018-05-30', 50000),
-('Michael', 'Brown', 'Sales Manager', 4, '2017-08-12', 65000),
-('Sarah', 'Wilson', 'HR Specialist', 5, '2019-11-01', 55000);
+-- Insert sample records into Employees table
+INSERT INTO Employees VALUES
+(1, 'John', 'Doe', 'Manager', 1, '2020-01-15', 75000.00),
+(2, 'Jane', 'Smith', 'Developer', 2, '2019-03-25', 65000.00),
+(3, 'Michael', 'Johnson', 'Analyst', 3, '2021-07-30', 60000.00),
+(4, 'Emily', 'Davis', 'Sales', 1, '2018-05-20', 55000.00),
+(5, 'David', 'Brown', 'HR', 4, '2017-11-10', 50000.00);
 
--- Insert sample data into Products
-INSERT INTO Products (ProductName, Category, Price, StockQuantity) VALUES
-('Widget A', 'Widgets', 25.00, 100),
-('Widget B', 'Widgets', 30.00, 150),
-('Gadget X', 'Gadgets', 45.00, 200),
-('Gadget Y', 'Gadgets', 50.00, 80),
-('Tool Z', 'Tools', 35.00, 60);
+-- Insert sample records into Departments table
+INSERT INTO Departments VALUES
+(1, 'Sales', 1),
+(2, 'IT', 2),
+(3, 'Finance', 3),
+(4, 'Human Resources', 5),
+(5, 'Marketing', NULL);
 
--- Insert sample data into Orders
-INSERT INTO Orders (CustomerName, OrderDate, TotalAmount) VALUES
-('Acme Corp', '2024-06-01', 1500.00),
-('Beta Industries', '2024-06-15', 2000.00),
-('Gamma LLC', '2024-06-20', 1750.00);
+-- Insert sample records into Orders table
+INSERT INTO Orders VALUES
+(1, 'Alice Johnson', '2023-06-01', 250.50),
+(2, 'Bob Lee', '2023-06-05', 120.00),
+(3, 'Carol White', '2023-06-10', 300.00),
+(4, 'David Green', '2023-06-15', 450.75),
+(5, 'Eva Black', '2023-06-20', 180.20);
 
--- Insert sample data into OrderDetails
-INSERT INTO OrderDetails (OrderID, ProductID, Quantity, Price) VALUES
-(1, 1, 30, 25.00),
-(1, 3, 10, 45.00),
-(2, 2, 50, 30.00),
-(2, 5, 20, 35.00),
-(3, 1, 40, 25.00),
-(3, 4, 15, 50.00);
+-- Insert sample records into Products table
+INSERT INTO Products VALUES
+(1, 'Laptop', 'Electronics', 1000.00, 20),
+(2, 'Smartphone', 'Electronics', 500.00, 50),
+(3, 'Desk Chair', 'Furniture', 150.00, 30),
+(4, 'Monitor', 'Electronics', 200.00, 25),
+(5, 'Keyboard', 'Accessories', 50.00, 100);
+
+-- Insert sample records into OrderDetails table
+INSERT INTO OrderDetails VALUES
+(1, 1, 1, 1, 1000.00),
+(2, 2, 2, 2, 500.00),
+(3, 3, 3, 1, 150.00),
+(4, 4, 4, 2, 200.00),
+(5, 5, 5, 4, 50.00);
