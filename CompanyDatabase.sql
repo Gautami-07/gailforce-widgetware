@@ -1,7 +1,3 @@
--- Create database
-CREATE DATABASE ManufacturingCompany;
-USE ManufacturingCompany;
-
 -- Create Employees table
 CREATE TABLE Employees (
     EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
