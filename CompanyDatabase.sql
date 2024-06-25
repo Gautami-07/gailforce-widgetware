@@ -82,10 +82,3 @@ INSERT INTO OrderDetails (OrderID, ProductID, Quantity, Price) VALUES
 (2, 5, 20, 35.00),
 (3, 1, 40, 25.00),
 (3, 4, 15, 50.00);
-
--- Confirm data insertion
-SELECT * FROM Employees;
-SELECT * FROM Departments;
-SELECT * FROM Products;
-SELECT * FROM Orders;
-SELECT * FROM OrderDetails;
