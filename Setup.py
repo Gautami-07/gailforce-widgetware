@@ -6,7 +6,7 @@ setup(
        packages=find_packages(),
        install_requires=[
            'apache-beam[gcp]',
-           'google-cloud-sql',
-           'sqlalchemy',
+           'cloud-sql-python-connector["pg8000"]',
+           'SQLAlchemy',
        ],
 )
